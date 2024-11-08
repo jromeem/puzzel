@@ -10,8 +10,8 @@ var movement_tween: Tween = null
 var is_moving: bool = false
 var conjure_queued: bool = false
 
-@onready var dino: CharacterBody2D = $Dino
-@onready var dino_sprite: AnimatedSprite2D = $Dino/AnimatedSprite
+@onready var dino: Dino = $Dino
+@onready var dino_sprite: AnimatedSprite2D = $Dino/DinoSprite
 
 const TILE_POSITIONS = {
 	Tile.LEFT: Vector2(-615, 560),    # tile 0
@@ -38,9 +38,8 @@ func walk(direction: Direction) -> void:
 		
 	is_moving = true
 	var target_tile = MOVEMENT_CONSTRAINTS[current_tile][direction]
-	
-	dino_sprite.play('walk')
-	dino_sprite.flip_h = (direction == Direction.LEFT)
+
+	dino.walks(direction == Direction.LEFT)
 	
 	movement_tween = create_tween()
 	movement_tween.tween_property(dino, "position", TILE_POSITIONS[target_tile], 0.3)
@@ -99,12 +98,10 @@ func handle_state() -> void:
 			handle_casting()
 
 func handle_idle() -> void:
-	dino_sprite.flip_h = false
-	dino_sprite.play("idle")
+	dino.idles()
 
 func handle_conjuring() -> void:
-	dino_sprite.flip_h = false
-	dino_sprite.play("step")
+	dino.conjures()
 	
 	if Input.is_action_just_pressed("conjure_end"):
 		transition_to(State.IDLE)

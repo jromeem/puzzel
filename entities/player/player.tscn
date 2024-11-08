@@ -1,6 +1,83 @@
-[gd_scene load_steps=18 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=28 format=3 uid="uid://olgdco8lthmf"]
 
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_7xbfo"]
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/player/DinoSprites - vita.png" id="1_33ppp"]
+[ext_resource type="Texture2D" uid="uid://dohdhf6w7ohpn" path="res://spells/Free Smoke Fx  Pixel 05.png" id="1_mcgx0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgoms"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(512, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs53a"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(448, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_par6y"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(384, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48f4l"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(320, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51i5p"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(256, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnwxn"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(192, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqtv"]
+atlas = ExtResource("1_mcgx0")
+region = Rect2(128, 640, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4y4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgoms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs53a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_par6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48f4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51i5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnwxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vqtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnwxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51i5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48f4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_par6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs53a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgoms")
+}],
+"loop": true,
+"name": &"conjuring_fx",
+"speed": 11.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht8hp"]
 atlas = ExtResource("1_33ppp")
@@ -123,8 +200,17 @@ radius = 26.36
 height = 112.72
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_7xbfo")
 
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+[node name="ConjuringFX" type="AnimatedSprite2D" parent="."]
+position = Vector2(57, -13)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_i4y4j")
+animation = &"conjuring_fx"
+autoplay = "conjuring_fx"
+frame_progress = 0.507187
+
+[node name="DinoSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(56, -63)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
