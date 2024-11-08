@@ -77,14 +77,14 @@ sources/0 = SubResource("TileSetAtlasSource_yakoi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s47wb"]
 size = Vector2(31.8366, 31.8056)
 
-[node name="Area2D" type="Area2D"]
+[node name="Tile" type="Area2D"]
 
-[node name="Tile0" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-128, 0)
 tile_map_data = PackedByteArray(0, 0, 4, 0, 255, 255, 0, 0, 0, 0, 5, 0, 0, 0)
 tile_set = SubResource("TileSet_ixy4i")
 rendering_quadrant_size = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(16, -16)
 shape = SubResource("RectangleShape2D_s47wb")

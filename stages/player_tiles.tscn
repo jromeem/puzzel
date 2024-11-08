@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://1yywgg1ur6oh"]
+[gd_scene load_steps=4 format=3 uid="uid://1yywgg1ur6oh"]
 
 [ext_resource type="PackedScene" uid="uid://bmrhg2o8ugco" path="res://stages/tile.tscn" id="1_7m0lf"]
+[ext_resource type="Script" path="res://stages/player_tiles.gd" id="1_gwet8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjt8o"]
 size = Vector2(128.837, 31.9522)
@@ -10,6 +11,7 @@ position = Vector2(-7, -1)
 rotation = 0.509636
 scale = Vector2(5, 5)
 skew = 0.553269
+script = ExtResource("1_gwet8")
 
 [node name="Tile0" parent="." instance=ExtResource("1_7m0lf")]
 position = Vector2(-62.1029, 16.2388)
@@ -23,3 +25,7 @@ position = Vector2(34.5008, 16.3847)
 [node name="PlayerTileCollision" type="CollisionShape2D" parent="."]
 position = Vector2(2.05588, 0.277487)
 shape = SubResource("RectangleShape2D_cjt8o")
+
+[connection signal="body_entered" from="Tile0" to="." method="_on_tile0_body_entered"]
+[connection signal="body_entered" from="Tile1" to="." method="_on_tile1_body_entered"]
+[connection signal="body_entered" from="Tile2" to="." method="_on_tile2_body_entered"]

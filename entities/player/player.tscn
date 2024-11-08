@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=14 format=3 uid="uid://olgdco8lthmf"]
 
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/player/DinoSprites - vita.png" id="1_33ppp"]
-[ext_resource type="Script" path="res://entities/player/player.gd" id="1_xl1kf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht8hp"]
 atlas = ExtResource("1_33ppp")
@@ -83,7 +82,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 13.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfbed"]
@@ -91,15 +90,14 @@ radius = 26.36
 height = 112.72
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_xl1kf")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(56, -63)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.840202
+frame_progress = 0.557081
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(51, -56)
