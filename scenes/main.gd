@@ -8,6 +8,7 @@ var current_state: State = State.IDLE
 var current_tile: Tile = Tile.MIDDLE
 var movement_tween: Tween = null
 var is_moving: bool = false
+var conjure_queued: bool = false
 
 @onready var dino: CharacterBody2D = $Dino
 @onready var dino_sprite: AnimatedSprite2D = $Dino/AnimatedSprite
@@ -28,12 +29,10 @@ func can_move(direction: Direction) -> bool:
 	return MOVEMENT_CONSTRAINTS[current_tile][direction] != null
 
 func walk(direction: Direction) -> void:
-	# If we can't move in the requested direction, immediately return to idle
 	if not can_move(direction):
-		transition_to(State.IDLE)
+		handle_movement_end()
 		return
 		
-	# Don't start a new movement if one is in progress
 	if is_moving:
 		return
 		
@@ -50,30 +49,41 @@ func walk(direction: Direction) -> void:
 	current_tile = target_tile
 	is_moving = false
 	
-	# After movement completes, check current input state
+	# Check if conjuring was requested during movement
+	if conjure_queued:
+		handle_movement_end()
+		return
+		
+	# Continue walking if direction is still held
 	if Input.is_action_pressed("left") and can_move(Direction.LEFT):
 		walk(Direction.LEFT)
 	elif Input.is_action_pressed("right") and can_move(Direction.RIGHT):
 		walk(Direction.RIGHT)
 	else:
+		handle_movement_end()
+
+func handle_movement_end() -> void:
+	is_moving = false
+	if conjure_queued:
+		conjure_queued = false
+		transition_to(State.CONJURING)
+	else:
 		transition_to(State.IDLE)
 
 func handle_movement_input() -> void:
-	# Only handle movement input if we're not already moving
 	if is_moving:
 		return
 		
 	if Input.is_action_pressed("left"):
-		# Only transition to walking state if movement is possible
 		if can_move(Direction.LEFT):
 			transition_to(State.WALKING_LEFT)
 		else:
-			transition_to(State.IDLE)
+			handle_movement_end()
 	elif Input.is_action_pressed("right"):
 		if can_move(Direction.RIGHT):
 			transition_to(State.WALKING_RIGHT)
 		else:
-			transition_to(State.IDLE)
+			handle_movement_end()
 
 func handle_state() -> void:
 	match current_state:
@@ -93,7 +103,11 @@ func handle_idle() -> void:
 	dino_sprite.play("idle")
 
 func handle_conjuring() -> void:
-	pass
+	dino_sprite.flip_h = false
+	dino_sprite.play("step")
+	
+	if Input.is_action_just_pressed("conjure_end"):
+		transition_to(State.IDLE)
 
 func handle_casting() -> void:
 	pass
@@ -101,8 +115,21 @@ func handle_casting() -> void:
 func transition_to(new_state: State) -> void:
 	current_state = new_state
 
+func check_conjure_input() -> void:
+	if Input.is_action_just_pressed("conjure"):
+		if is_moving:
+			# Queue conjuring to start after movement completes
+			conjure_queued = true
+		else:
+			# Start conjuring immediately if not moving
+			transition_to(State.CONJURING)
+
 func _physics_process(_delta: float) -> void:
-	# Always check for input, but handle it based on current state
 	if current_state == State.IDLE or current_state == State.WALKING_LEFT or current_state == State.WALKING_RIGHT:
 		handle_movement_input()
+	
+	# Check for conjuring input in any state except CONJURING
+	if current_state != State.CONJURING:
+		check_conjure_input()
+	
 	handle_state()

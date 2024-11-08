@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=18 format=3 uid="uid://olgdco8lthmf"]
 
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/player/DinoSprites - vita.png" id="1_33ppp"]
 
@@ -17,6 +17,22 @@ region = Rect2(48, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_55ow5"]
 atlas = ExtResource("1_33ppp")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asv6t"]
+atlas = ExtResource("1_33ppp")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0ca4"]
+atlas = ExtResource("1_33ppp")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uyvs"]
+atlas = ExtResource("1_33ppp")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w81h3"]
+atlas = ExtResource("1_33ppp")
+region = Rect2(312, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krwqs"]
 atlas = ExtResource("1_33ppp")
@@ -63,6 +79,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_asv6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0ca4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uyvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w81h3")
+}],
+"loop": true,
+"name": &"step",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_krwqs")
 }, {
 "duration": 1.0,
@@ -95,9 +128,9 @@ height = 112.72
 position = Vector2(56, -63)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
-animation = &"walk"
+animation = &"step"
 autoplay = "idle"
-frame_progress = 0.557081
+frame_progress = 0.965413
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(51, -56)
