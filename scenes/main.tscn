@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2l2wgtatrw63"]
+
+[ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
+[ext_resource type="PackedScene" uid="uid://olgdco8lthmf" path="res://entities/player/player.tscn" id="1_skgvb"]
+[ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_ksyq6")]
+
+[node name="Dino" parent="." instance=ExtResource("1_skgvb")]
+position = Vector2(-433, 599)
+
+[node name="Slime" parent="." instance=ExtResource("3_7stg1")]
+position = Vector2(-26, 142)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(6, 0)
