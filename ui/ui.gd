@@ -1,10 +1,14 @@
-extends LineEdit
+class_name UI extends Control
 
-var isConjuring = false
+var isVisible = false
 var allowed_characters = "[A-Za-z]"
-@onready var line_edit: LineEdit = $"."
+
 @export var spellword = ''
-@onready var label: RichTextLabel = $"../Label"
+@onready var shade_bg: ColorRect = $ShadeBG
+@onready var container: VBoxContainer = $VBoxContainer
+@onready var line_edit: LineEdit = $VBoxContainer/LineEdit
+@onready var border_box: LineEdit = $BorderBox
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal invalid_spellword(word)
 signal valid_spellword(word)
@@ -12,16 +16,29 @@ signal prefix_detected(prefix)
 signal root_detected(root)
 signal suffix_detected(suffix)
 
-func _on_conjure_start():
-	isConjuring = !isConjuring
-	line_edit.visible = true
-	line_edit.grab_focus()
-
-func _on_conjure_end():
-	isConjuring = !isConjuring
-	label.text = spellword
-	line_edit.visible = false
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	shade_bg.visible = isVisible
+	container.visible = isVisible
+	border_box.visible = isVisible
 	line_edit.text = ''
+
+func toggle_ui() -> void:
+	isVisible = !isVisible
+	if (isVisible):
+		animation_player.play("conjuring_transition")
+	else:
+		animation_player.play("conjuring_end_transition")
+	# animation player calls set_visibility(bool) in AnimationPlayer editor
+	
+func set_visibility(visibility: bool = false) -> void:
+	#animation_player.play("conjuring_transition")
+	shade_bg.visible = visibility
+	container.visible = visibility
+	border_box.visible = visibility
+	if (visibility):
+		line_edit.text = ''
+		line_edit.grab_focus()
 
 # Define roots, prefixes, and suffixes for validation
 var lesser_roots = ["pyri", "aqua", "volt", "zeph", "terr", "lux", "nox", "ferrum"]
@@ -131,8 +148,8 @@ func is_valid_spell(spell_input: String) -> bool:
 		return false
 	
 	# Highlight all components at once
-	var spell_container: FlowContainer = $"../SpellContainer"
-	spell_container.highlight_valid_spell_components(detected_prefixes, detected_root, detected_suffixes)
+	#var spell_container: FlowContainer = $"../SpellContainer"
+	#spell_container.highlight_valid_spell_components(detected_prefixes, detected_root, detected_suffixes)
 	
 	return true
 
@@ -144,8 +161,8 @@ func _on_text_changed(new_text: String) -> void:
 	
 	# If the cleaned text is different from input, update the LineEdit
 	if spellword != new_text:
-		text = spellword
-		set_caret_column(spellword.length())
+		line_edit.text = spellword
+		line_edit.set_caret_column(spellword.length())
 	
 	# Convert to lowercase for consistent validation
 	var lowercase_spell = spellword.to_lower()
@@ -158,7 +175,7 @@ func _on_text_changed(new_text: String) -> void:
 		
 # Optional: Add this function to restrict input characters in real-time
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
+	if event is InputEventKey:
 		if event.keycode == KEY_BACKSPACE or event.keycode == KEY_DELETE:
 			return
 		
@@ -166,8 +183,9 @@ func _gui_input(event: InputEvent) -> void:
 		if not typed_char.to_lower().is_valid_identifier():
 			get_viewport().set_input_as_handled()
 
-func _ready():
-	var player_node = get_node("../..")
-	player_node.connect("conjuring_started", _on_conjure_start)
-	player_node.connect("conjuring_ended", _on_conjure_end)
-	line_edit.visible = false
+func _on_valid_spellword(word: Variant) -> void:
+	print('spellword! ', word)
+
+func _on_invalid_spellword(_word: Variant) -> void:
+	#print('rubbish! ', word)
+	pass

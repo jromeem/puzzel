@@ -1,10 +1,18 @@
 class_name Main extends Node2D
 
-enum State { IDLE, WALKING_LEFT, WALKING_RIGHT, CONJURING, CASTING }
+# game states
+enum PlayerState { IDLE, WALKING_LEFT, WALKING_RIGHT, CONJURING, CASTING }
+enum UIState { SPELLING }
 enum Tile { LEFT = 0, MIDDLE = 1, RIGHT = 2 }
 enum Direction { LEFT = -1, RIGHT = 1 }
 
-var current_state: State = State.IDLE
+# signals
+signal conjuring_start
+signal conjuring_end
+
+# game initial values
+var current_state: PlayerState = PlayerState.IDLE
+var previous_state: PlayerState = PlayerState.IDLE
 var current_tile: Tile = Tile.MIDDLE
 var movement_tween: Tween = null
 var is_moving: bool = false
@@ -12,6 +20,7 @@ var conjure_queued: bool = false
 
 @onready var dino: Dino = $Dino
 @onready var dino_sprite: AnimatedSprite2D = $Dino/DinoSprite
+@onready var ui: Control = $UI
 
 const TILE_POSITIONS = {
 	Tile.LEFT: Vector2(-615, 560),    # tile 0
@@ -65,9 +74,9 @@ func handle_movement_end() -> void:
 	is_moving = false
 	if conjure_queued:
 		conjure_queued = false
-		transition_to(State.CONJURING)
+		transition_to(PlayerState.CONJURING)
 	else:
-		transition_to(State.IDLE)
+		transition_to(PlayerState.IDLE)
 
 func handle_movement_input() -> void:
 	if is_moving:
@@ -75,26 +84,26 @@ func handle_movement_input() -> void:
 		
 	if Input.is_action_pressed("left"):
 		if can_move(Direction.LEFT):
-			transition_to(State.WALKING_LEFT)
+			transition_to(PlayerState.WALKING_LEFT)
 		else:
 			handle_movement_end()
 	elif Input.is_action_pressed("right"):
 		if can_move(Direction.RIGHT):
-			transition_to(State.WALKING_RIGHT)
+			transition_to(PlayerState.WALKING_RIGHT)
 		else:
 			handle_movement_end()
 
 func handle_state() -> void:
 	match current_state:
-		State.IDLE:
+		PlayerState.IDLE:
 			handle_idle()
-		State.WALKING_LEFT:
+		PlayerState.WALKING_LEFT:
 			walk(Direction.LEFT)
-		State.WALKING_RIGHT:
+		PlayerState.WALKING_RIGHT:
 			walk(Direction.RIGHT)
-		State.CONJURING:
+		PlayerState.CONJURING:
 			handle_conjuring()
-		State.CASTING:
+		PlayerState.CASTING:
 			handle_casting()
 
 func handle_idle() -> void:
@@ -104,13 +113,21 @@ func handle_conjuring() -> void:
 	dino.conjures()
 	
 	if Input.is_action_just_pressed("conjure_end"):
-		transition_to(State.IDLE)
+		transition_to(PlayerState.IDLE)
+		conjuring_end.emit()
+		ui.toggle_ui()
 
 func handle_casting() -> void:
 	pass
 
-func transition_to(new_state: State) -> void:
+func transition_to(new_state: PlayerState) -> void:
+	previous_state = current_state
 	current_state = new_state
+	
+	# Only emit conjuring_start when first entering conjuring state
+	if current_state == PlayerState.CONJURING and previous_state != PlayerState.CONJURING:
+		conjuring_start.emit()
+		ui.toggle_ui()
 
 func check_conjure_input() -> void:
 	if Input.is_action_just_pressed("conjure"):
@@ -119,14 +136,22 @@ func check_conjure_input() -> void:
 			conjure_queued = true
 		else:
 			# Start conjuring immediately if not moving
-			transition_to(State.CONJURING)
+			transition_to(PlayerState.CONJURING)
 
 func _physics_process(_delta: float) -> void:
-	if current_state == State.IDLE or current_state == State.WALKING_LEFT or current_state == State.WALKING_RIGHT:
+	if current_state == PlayerState.IDLE or current_state == PlayerState.WALKING_LEFT or current_state == PlayerState.WALKING_RIGHT:
 		handle_movement_input()
 	
 	# Check for conjuring input in any state except CONJURING
-	if current_state != State.CONJURING:
+	if current_state != PlayerState.CONJURING:
 		check_conjure_input()
 	
 	handle_state()
+
+func _on_conjuring_start() -> void:
+	print('conjuring start signal')
+	pass # Replace with function body.
+
+func _on_conjuring_end() -> void:
+	print('conjuring end signal')
+	pass # Replace with function body.
