@@ -1,244 +1,142 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6alqwa1p5xjd"]
+[gd_scene load_steps=19 format=3 uid="uid://blt1mxiqcc5s1"]
 
-[ext_resource type="Script" path="res://ui/ui.gd" id="1_5g261"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_s48b6"]
+[ext_resource type="FontFile" uid="uid://b2lddh42dyoiu" path="res://assets/rainyhearts.ttf" id="2_u42qx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iix8"]
-bg_color = Color(0.533333, 0.4, 0.262745, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="ImageTexture" id="ImageTexture_6hxwa"]
 
-[sub_resource type="SystemFont" id="SystemFont_l83ig"]
-font_names = PackedStringArray("AkayaTelivigala")
-subpixel_positioning = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rq1db"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyfje"]
-bg_color = Color(0.592157, 0.443137, 0.290196, 1)
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0.717647, 0.572549, 0.415686, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pdbv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hn2j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5eu3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yds21"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwso2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bga8j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5gdyl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l60tk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nba7"]
+
+[sub_resource type="Theme" id="Theme_6kilc"]
+HScrollBar/icons/decrement = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/decrement_highlight = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/decrement_pressed = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment_highlight = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment_pressed = SubResource("ImageTexture_6hxwa")
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_rq1db")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_8pdbv")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_3hn2j")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_5eu3x")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_yds21")
+VScrollBar/icons/decrement = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_6hxwa")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_vwso2")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_bga8j")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_5gdyl")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_l60tk")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_7nba7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxa0b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5ddv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6iryb"]
+bg_color = Color(0.156863, 0.192157, 0.203922, 0.345098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.666667, 0.0352941, 0.505882)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-corner_detail = 10
+expand_margin_left = 20.0
+expand_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsr3l"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmmg1"]
-bg_color = Color(0.592157, 0.443137, 0.290196, 1)
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0.717647, 0.572549, 0.415686, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y428h"]
+bg_color = Color(0.156863, 0.192157, 0.203922, 0.345098)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="Animation" id="Animation_g3owl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShadeBG:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.176471, 0.176471, 0.176471, 0.533333)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BorderBox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(344, 1463)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, -14)]
-}
-
-[sub_resource type="Animation" id="Animation_oyll2"]
-resource_name = "conjuring_end_transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShadeBG:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 0.466517),
-"update": 0,
-"values": [Color(0.176471, 0.176471, 0.176471, 0.67451), Color(0.176471, 0.176471, 0.176471, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BorderBox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 0.116629),
-"update": 0,
-"values": [Vector2(344, 1463), Vector2(344, 1663)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 0.116629),
-"update": 0,
-"values": [Vector2(16, -14), Vector2(16, 186)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_visibility"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_y3dj6"]
-resource_name = "conjuring_transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShadeBG:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.466517, 1),
-"update": 0,
-"values": [Color(0.176471, 0.176471, 0.176471, 0), Color(0.176471, 0.176471, 0.176471, 0.67451)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BorderBox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 1),
-"update": 0,
-"values": [Vector2(344, 1663), Vector2(344, 1463)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 1),
-"update": 0,
-"values": [Vector2(16, 186), Vector2(16, -14)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_visibility"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqqmp"]
-_data = {
-"RESET": SubResource("Animation_g3owl"),
-"conjuring_end_transition": SubResource("Animation_oyll2"),
-"conjuring_transition": SubResource("Animation_y3dj6")
-}
+expand_margin_left = 20.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
 
 [node name="UI" type="Control"]
-custom_minimum_size = Vector2(2000, 1500)
 layout_mode = 3
 anchors_preset = 0
-offset_left = -994.0
-offset_top = -750.0
-offset_right = 1006.0
-offset_bottom = 750.0
-script = ExtResource("1_5g261")
+offset_top = -9.0
+offset_right = 40.0
+offset_bottom = 31.0
+script = ExtResource("1_s48b6")
 
-[node name="ShadeBG" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(2000, 1655)
-layout_mode = 0
-offset_top = -4.0
-offset_right = 2000.0
-offset_bottom = 1651.0
-color = Color(0.176471, 0.176471, 0.176471, 0.533333)
+[node name="Container" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -981.0
+offset_top = 580.0
+offset_right = 19.0
+offset_bottom = 829.0
+grow_horizontal = 0
+grow_vertical = 0
+vertical = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -500.0
-offset_bottom = 1500.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 2000.0
-offset_right = 2500.0
-offset_bottom = 1500.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect4" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -500.0
-offset_top = -754.0
-offset_right = 2500.0
-color = Color(0, 0, 0, 1)
-
-[node name="BorderBox" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(1300, 85)
-layout_mode = 0
-offset_left = 344.0
-offset_top = 1463.0
-offset_right = 1659.0
-offset_bottom = 1645.0
+[node name="Label" type="RichTextLabel" parent="Container"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_1iix8")
+theme = SubResource("Theme_6kilc")
+theme_override_colors/default_color = Color(1, 1, 1, 0.231373)
+theme_override_fonts/normal_font = ExtResource("2_u42qx")
+theme_override_font_sizes/bold_italics_font_size = 90
+theme_override_font_sizes/italics_font_size = 90
+theme_override_font_sizes/mono_font_size = 90
+theme_override_font_sizes/normal_font_size = 90
+theme_override_font_sizes/bold_font_size = 90
+theme_override_styles/focus = SubResource("StyleBoxFlat_fxa0b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5ddv")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="LineEdit" type="LineEdit" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 0.883415, 0.609577, 1)
+theme_override_fonts/font = ExtResource("2_u42qx")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxFlat_6iryb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y428h")
+max_length = 30
 context_menu_enabled = false
 virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
@@ -246,45 +144,12 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
+caret_blink_interval = 0.1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(1968, 1500)
-layout_mode = 0
-offset_left = 16.0
-offset_top = -14.0
-offset_right = 1984.0
-offset_bottom = 1636.0
-alignment = 2
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1300, 80)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/selection_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/caret_width = 0
-theme_override_fonts/font = SubResource("SystemFont_l83ig")
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxFlat_eyfje")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_xsr3l")
-theme_override_styles/normal = SubResource("StyleBoxFlat_wmmg1")
-alignment = 1
-max_length = 30
-shortcut_keys_enabled = false
-flat = true
-caret_blink = true
-caret_blink_interval = 5.06
-caret_force_displayed = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_wqqmp")
-}
-speed_scale = 1.75
-
-[connection signal="gui_input" from="BorderBox" to="BorderBox" method="_on_gui_input"]
-[connection signal="mouse_entered" from="BorderBox" to="BorderBox" method="_on_mouse_entered"]
-[connection signal="text_changed" from="VBoxContainer/LineEdit" to="." method="_on_text_changed"]
+[connection signal="invalid_spellword" from="." to="." method="_on_invalid_spellword"]
+[connection signal="prefix_detected" from="." to="." method="_on_prefix_detected"]
+[connection signal="root_detected" from="." to="." method="_on_root_detected"]
+[connection signal="suffix_detected" from="." to="." method="_on_suffix_detected"]
+[connection signal="valid_spellword" from="." to="." method="_on_valid_spellword"]
+[connection signal="gui_input" from="Container/LineEdit" to="." method="_gui_input"]
+[connection signal="text_changed" from="Container/LineEdit" to="." method="_on_text_changed"]

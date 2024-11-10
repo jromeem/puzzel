@@ -3,6 +3,7 @@ class_name Dino extends CharacterBody2D
 signal conjuring_start
 signal conjuring_end
 
+@export var ui: UI
 @onready var dino_sprite: AnimatedSprite2D = $DinoSprite
 @onready var conjuring_fx: AnimatedSprite2D = $ConjuringFX
 @onready var state_machine: StateMachine = $StateMachine
@@ -39,8 +40,8 @@ func can_move(direction: Direction) -> bool:
 	if constraints == null:
 		return false
 		
-	var can_move = constraints.get(dir_str) != null
-	return can_move
+	var can_move_val = constraints.get(dir_str) != null
+	return can_move_val
 
 func get_target_position(target_tile_str: String) -> Vector2:
 	return TILE_POSITIONS.get(target_tile_str, Vector2.ZERO)
@@ -59,3 +60,9 @@ func conjures(flipped = false) -> void:
 	dino_sprite.play("step")
 	dino_sprite.flip_h = flipped
 	conjuring_fx.visible = true
+
+func _on_conjuring_end() -> void:
+	ui.toggle_ui()
+
+func _on_conjuring_start() -> void:
+	ui.toggle_ui()

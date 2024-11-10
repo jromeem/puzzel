@@ -1,13 +1,13 @@
 [gd_scene load_steps=33 format=3 uid="uid://olgdco8lthmf"]
 
-[ext_resource type="Script" path="res://entities/player/dino.gd" id="1_7xbfo"]
-[ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/player/DinoSprites - vita.png" id="1_33ppp"]
+[ext_resource type="Script" path="res://entities/dino/dino.gd" id="1_7xbfo"]
 [ext_resource type="Texture2D" uid="uid://dohdhf6w7ohpn" path="res://spells/Free Smoke Fx  Pixel 05.png" id="1_mcgx0"]
-[ext_resource type="Script" path="res://state_machine.gd" id="4_7rn2m"]
-[ext_resource type="Script" path="res://scenes/idle_state.gd" id="5_enxiw"]
-[ext_resource type="Script" path="res://scenes/walking_state.gd" id="6_krq07"]
-[ext_resource type="Script" path="res://scenes/conjuring_state.gd" id="7_rbcmj"]
-[ext_resource type="Script" path="res://scenes/casting_state.gd" id="8_gf7vc"]
+[ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/dino/media/DinoSprites - vita.png" id="3_x3f25"]
+[ext_resource type="Script" path="res://common/state_machine.gd" id="4_7rn2m"]
+[ext_resource type="Script" path="res://entities/dino/states/idle_state.gd" id="5_enxiw"]
+[ext_resource type="Script" path="res://entities/dino/states/walking_state.gd" id="6_krq07"]
+[ext_resource type="Script" path="res://entities/dino/states/conjuring_state.gd" id="7_rbcmj"]
+[ext_resource type="Script" path="res://entities/dino/states/casting_state.gd" id="8_gf7vc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgoms"]
 atlas = ExtResource("1_mcgx0")
@@ -85,59 +85,59 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht8hp"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epunf"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b17tb"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55ow5"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asv6t"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(240, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0ca4"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(264, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uyvs"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(288, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w81h3"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(312, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krwqs"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eon2r"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(120, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdfr8"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(144, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avwe0"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(168, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hr8h3"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(192, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6ufk"]
-atlas = ExtResource("1_33ppp")
+atlas = ExtResource("3_x3f25")
 region = Rect2(216, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fxkh3"]
@@ -234,12 +234,12 @@ initial_state = NodePath("Idle")
 script = ExtResource("5_enxiw")
 dino = NodePath("../..")
 
-[node name="Walking_Left" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+[node name="Walking Left" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
 script = ExtResource("6_krq07")
 dino = NodePath("../..")
 direction = -1
 
-[node name="Walking_Right" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+[node name="Walking Right" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
 script = ExtResource("6_krq07")
 dino = NodePath("../..")
 
@@ -250,3 +250,6 @@ dino = NodePath("../..")
 [node name="Casting" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
 script = ExtResource("8_gf7vc")
 dino = NodePath("../..")
+
+[connection signal="conjuring_end" from="." to="." method="_on_conjuring_end"]
+[connection signal="conjuring_start" from="." to="." method="_on_conjuring_start"]

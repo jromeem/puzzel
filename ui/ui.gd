@@ -1,44 +1,12 @@
 class_name UI extends Control
 
-var isVisible = false
+var isReady = false
 var allowed_characters = "[A-Za-z]"
 
 @export var spellword = ''
-@onready var shade_bg: ColorRect = $ShadeBG
-@onready var container: VBoxContainer = $VBoxContainer
-@onready var line_edit: LineEdit = $VBoxContainer/LineEdit
-@onready var border_box: LineEdit = $BorderBox
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-signal invalid_spellword(word)
-signal valid_spellword(word)
-signal prefix_detected(prefix)
-signal root_detected(root)
-signal suffix_detected(suffix)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	shade_bg.visible = isVisible
-	container.visible = isVisible
-	border_box.visible = isVisible
-	line_edit.text = ''
-
-func toggle_ui() -> void:
-	isVisible = !isVisible
-	if (isVisible):
-		animation_player.play("conjuring_transition")
-	else:
-		animation_player.play("conjuring_end_transition")
-	# animation player calls set_visibility(bool) in AnimationPlayer editor
-	
-func set_visibility(visibility: bool = false) -> void:
-	#animation_player.play("conjuring_transition")
-	shade_bg.visible = false
-	container.visible = visibility
-	border_box.visible = visibility
-	if (visibility):
-		line_edit.text = ''
-		line_edit.grab_focus()
+@export var spell_components = {"prefixes": [], "root": '', "suffixes": []}
+@onready var line_edit: LineEdit = $Container/LineEdit
+@onready var label: RichTextLabel = $Container/Label
 
 # Define roots, prefixes, and suffixes for validation
 var lesser_roots = ["pyri", "aqua", "volt", "zeph", "terr", "lux", "nox", "ferrum"]
@@ -57,6 +25,89 @@ var suffixes = {
 	"duration": ["len", "tan"],
 	"effect_modifiers": ["nu", "dra", "via", "tos", "rum", "sol"]
 }
+
+signal invalid_spellword(word)
+signal valid_spellword(word)
+signal prefix_detected(prefix)
+signal root_detected(root)
+signal suffix_detected(suffix)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	label.text = ''
+	line_edit.text = ''
+	line_edit.mouse_filter = line_edit.MOUSE_FILTER_IGNORE
+
+func toggle_ui() -> void:
+	isReady = !isReady
+	set_ready(isReady)
+
+# Constants for spell formatting
+const SPELL_FORMATS = {
+	"prefixes": "[wave amp=25.0 freq=3.0][color=purple]%s[/color][/wave]",
+	"root": "[wave amp=50.0 freq=5.0][color=blue]%s[/color][/wave]",
+	"suffixes": "[wave amp=25.0 freq=3.0][color=green]%s[/color][/wave]"
+}
+const MAX_HISTORY_LINES = 20
+
+func set_ready(ready_val: bool) -> void:
+	if ready_val:
+		enable_line_edit()
+	else:
+		process_line_input()
+		disable_line_edit()
+	line_edit.text = ""
+
+func enable_line_edit() -> void:
+	line_edit.mouse_filter = line_edit.MOUSE_FILTER_STOP
+	line_edit.grab_focus()
+
+func disable_line_edit() -> void:
+	line_edit.mouse_filter = line_edit.MOUSE_FILTER_IGNORE
+	line_edit.release_focus()
+
+func process_line_input() -> void:
+	if line_edit.text.length() == 0:
+		return
+		
+	add_to_history(format_spell_text(line_edit.text))
+	trim_history_if_needed()
+
+func format_spell_text(text: String) -> String:
+	var formatted_text = text
+	
+	# Handle arrays of prefixes and suffixes
+	for prefix in spell_components["prefixes"]:
+		if prefix.length() > 0:
+			formatted_text = formatted_text.replace(
+				prefix,
+				SPELL_FORMATS["prefixes"] % prefix
+			)
+	
+	# Handle single root
+	if spell_components["root"].length() > 0:
+		formatted_text = formatted_text.replace(
+			spell_components["root"],
+			SPELL_FORMATS["root"] % spell_components["root"]
+		)
+	
+	# Handle arrays of suffixes
+	for suffix in spell_components["suffixes"]:
+		if suffix.length() > 0:
+			formatted_text = formatted_text.replace(
+				suffix,
+				SPELL_FORMATS["suffixes"] % suffix
+			)
+	
+	return formatted_text + "\n"
+
+func add_to_history(text: String) -> void:
+	label.text += text
+
+func trim_history_if_needed() -> void:
+	if label.get_line_count() > MAX_HISTORY_LINES:
+		label.text = label.text.strip_edges(true, false)
+		label.text = label.text.erase(0, label.text.find('\n', 0))
 
 func flatten_array(nested_array: Array) -> Array:
 	var flat_array = []
@@ -95,6 +146,7 @@ func is_valid_spell(spell_input: String) -> bool:
 			for prefix in prefixes[category]:
 				if remaining_text.begins_with(prefix):
 					detected_prefixes.append(prefix)
+					spell_components["prefixes"].append(prefix)
 					prefix_detected.emit(prefix)
 					used_prefix_categories[category] = true
 					remaining_text = remaining_text.substr(prefix.length())
@@ -106,6 +158,7 @@ func is_valid_spell(spell_input: String) -> bool:
 	for root in roots:
 		if remaining_text.begins_with(root):
 			detected_root = root
+			spell_components["root"] = root
 			root_detected.emit(root)
 			remaining_text = remaining_text.substr(root.length())
 			root_found = true
@@ -126,6 +179,7 @@ func is_valid_spell(spell_input: String) -> bool:
 			for suffix in suffixes[category]:
 				if remaining_text.begins_with(suffix):
 					detected_suffixes.append(suffix)
+					spell_components["suffixes"].append(suffix)
 					suffix_detected.emit(suffix)
 					emit_signal("suffix_detected", suffix)
 					used_suffix_categories[category] = true
@@ -163,7 +217,7 @@ func _on_text_changed(new_text: String) -> void:
 	if spellword != new_text:
 		line_edit.text = spellword
 		line_edit.set_caret_column(spellword.length())
-	
+		
 	# Convert to lowercase for consistent validation
 	var lowercase_spell = spellword.to_lower()
 	
@@ -187,5 +241,14 @@ func _on_valid_spellword(word: Variant) -> void:
 	print('spellword! ', word)
 
 func _on_invalid_spellword(_word: Variant) -> void:
-	#print('rubbish! ', word)
+	spell_components = {"prefixes": [], "root": '', "suffixes": []}
 	pass
+
+func _on_prefix_detected(_prefix: Variant) -> void:
+	pass # Replace with function body.
+
+func _on_root_detected(_root: Variant) -> void:
+	pass # Replace with function body.
+
+func _on_suffix_detected(_suffix: Variant) -> void:
+	pass # Replace with function body.
