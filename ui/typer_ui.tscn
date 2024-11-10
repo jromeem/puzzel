@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5wlp54n7lmq6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjmnt"]
+bg_color = Color(0.933333, 0.933333, 0.933333, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjpr"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 0.654902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6t7f"]
+bg_color = Color(0.929412, 0.368627, 0.341176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ywkd"]
+bg_color = Color(0.956863, 0.733333, 0.180392, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejc07"]
+bg_color = Color(0.317647, 0.788235, 0.25098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TyperUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(800, 20)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 376.0
+offset_right = 944.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjmnt")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 376.0
+offset_right = 844.0
+offset_bottom = 876.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_onjpr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 376.0
+offset_right = 256.0
+offset_bottom = 416.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6t7f")
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ywkd")
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejc07")

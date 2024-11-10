@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6alqwa1p5xjd"]
+[gd_scene load_steps=11 format=3 uid="uid://c6alqwa1p5xjd"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_5g261"]
-[ext_resource type="Script" path="res://ui/border_box.gd" id="2_pkuum"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iix8"]
 bg_color = Color(0.533333, 0.4, 0.262745, 1)
@@ -40,59 +39,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="Animation" id="Animation_y3dj6"]
-resource_name = "conjuring_transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShadeBG:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.466517, 1),
-"update": 0,
-"values": [Color(0.176471, 0.176471, 0.176471, 0), Color(0.176471, 0.176471, 0.176471, 0.67451)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BorderBox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 1),
-"update": 0,
-"values": [Vector2(344, 1663), Vector2(344, 1463)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.116629, 1),
-"update": 0,
-"values": [Vector2(16, 186), Vector2(16, -14)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_visibility"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_g3owl"]
 length = 0.001
@@ -186,6 +132,59 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_y3dj6"]
+resource_name = "conjuring_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadeBG:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.466517, 1),
+"update": 0,
+"values": [Color(0.176471, 0.176471, 0.176471, 0), Color(0.176471, 0.176471, 0.176471, 0.67451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BorderBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.116629, 1),
+"update": 0,
+"values": [Vector2(344, 1663), Vector2(344, 1463)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.116629, 1),
+"update": 0,
+"values": [Vector2(16, 186), Vector2(16, -14)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_visibility"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wqqmp"]
 _data = {
 "RESET": SubResource("Animation_g3owl"),
@@ -206,8 +205,9 @@ script = ExtResource("1_5g261")
 [node name="ShadeBG" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(2000, 1655)
 layout_mode = 0
+offset_top = -4.0
 offset_right = 2000.0
-offset_bottom = 1650.0
+offset_bottom = 1651.0
 color = Color(0.176471, 0.176471, 0.176471, 0.533333)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -234,9 +234,9 @@ color = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(1300, 85)
 layout_mode = 0
 offset_left = 344.0
-offset_top = 1663.0
+offset_top = 1463.0
 offset_right = 1659.0
-offset_bottom = 1845.0
+offset_bottom = 1645.0
 mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_1iix8")
 context_menu_enabled = false
@@ -246,15 +246,14 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
-script = ExtResource("2_pkuum")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1968, 1500)
 layout_mode = 0
 offset_left = 16.0
-offset_top = 186.0
+offset_top = -14.0
 offset_right = 1984.0
-offset_bottom = 1836.0
+offset_bottom = 1636.0
 alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer"]

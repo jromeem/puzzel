@@ -1,14 +1,11 @@
-class_name UI extends Control
+class_name UI2 extends Control
 
-var isVisible = false
+var isReady = false
 var allowed_characters = "[A-Za-z]"
 
 @export var spellword = ''
-@onready var shade_bg: ColorRect = $ShadeBG
-@onready var container: VBoxContainer = $VBoxContainer
-@onready var line_edit: LineEdit = $VBoxContainer/LineEdit
-@onready var border_box: LineEdit = $BorderBox
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var line_edit: LineEdit = $Container/LineEdit
+@onready var label: RichTextLabel = $Container/Label
 
 signal invalid_spellword(word)
 signal valid_spellword(word)
@@ -18,27 +15,29 @@ signal suffix_detected(suffix)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	shade_bg.visible = isVisible
-	container.visible = isVisible
-	border_box.visible = isVisible
+	print('ready')
+	label.text = ''
 	line_edit.text = ''
+	line_edit.mouse_filter = line_edit.MOUSE_FILTER_IGNORE
 
 func toggle_ui() -> void:
-	isVisible = !isVisible
-	if (isVisible):
-		animation_player.play("conjuring_transition")
-	else:
-		animation_player.play("conjuring_end_transition")
-	# animation player calls set_visibility(bool) in AnimationPlayer editor
-	
-func set_visibility(visibility: bool = false) -> void:
-	#animation_player.play("conjuring_transition")
-	shade_bg.visible = false
-	container.visible = visibility
-	border_box.visible = visibility
-	if (visibility):
-		line_edit.text = ''
+	isReady = !isReady
+	set_ready(isReady)
+
+func set_ready(ready: bool) -> void:
+	if (ready):
+		line_edit.mouse_filter = line_edit.MOUSE_FILTER_STOP
 		line_edit.grab_focus()
+	else:
+		print('here')
+		if (line_edit.text.length() > 0):
+			label.text += line_edit.text + '\n'
+			if (label.get_line_count() > 20):
+				label.text = label.text.strip_edges(true, false)
+				label.text = label.text.erase(0, label.text.find('\n', 0))
+		line_edit.mouse_filter = line_edit.MOUSE_FILTER_IGNORE
+		line_edit.release_focus()
+	line_edit.text = ''
 
 # Define roots, prefixes, and suffixes for validation
 var lesser_roots = ["pyri", "aqua", "volt", "zeph", "terr", "lux", "nox", "ferrum"]
@@ -163,7 +162,7 @@ func _on_text_changed(new_text: String) -> void:
 	if spellword != new_text:
 		line_edit.text = spellword
 		line_edit.set_caret_column(spellword.length())
-	
+		
 	# Convert to lowercase for consistent validation
 	var lowercase_spell = spellword.to_lower()
 	
@@ -187,5 +186,4 @@ func _on_valid_spellword(word: Variant) -> void:
 	print('spellword! ', word)
 
 func _on_invalid_spellword(_word: Variant) -> void:
-	#print('rubbish! ', word)
 	pass

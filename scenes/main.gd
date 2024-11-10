@@ -20,7 +20,7 @@ var conjure_queued: bool = false
 
 @onready var dino: Dino = $Dino
 @onready var dino_sprite: AnimatedSprite2D = $Dino/DinoSprite
-@onready var ui: Control = $UI
+@onready var ui2: UI2 = $UI2
 
 const TILE_POSITIONS = {
 	Tile.LEFT: Vector2(-615, 560),    # tile 0
@@ -115,7 +115,7 @@ func handle_conjuring() -> void:
 	if Input.is_action_just_pressed("conjure_end"):
 		transition_to(PlayerState.IDLE)
 		conjuring_end.emit()
-		ui.toggle_ui()
+		ui2.toggle_ui()
 
 func handle_casting() -> void:
 	pass
@@ -127,7 +127,7 @@ func transition_to(new_state: PlayerState) -> void:
 	# Only emit conjuring_start when first entering conjuring state
 	if current_state == PlayerState.CONJURING and previous_state != PlayerState.CONJURING:
 		conjuring_start.emit()
-		ui.toggle_ui()
+		ui2.toggle_ui()
 
 func check_conjure_input() -> void:
 	if Input.is_action_just_pressed("conjure"):

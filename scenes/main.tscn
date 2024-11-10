@@ -1,46 +1,90 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2l2wgtatrw63"]
+[gd_scene load_steps=24 format=3 uid="uid://d2l2wgtatrw63"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_0s5f5"]
 [ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
 [ext_resource type="PackedScene" uid="uid://olgdco8lthmf" path="res://entities/player/player.tscn" id="1_skgvb"]
 [ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
-[ext_resource type="PackedScene" uid="uid://c6alqwa1p5xjd" path="res://ui/ui.tscn" id="4_oyxyp"]
+[ext_resource type="Script" path="res://scenes/ui2.gd" id="5_75xuf"]
+[ext_resource type="FontFile" uid="uid://b2lddh42dyoiu" path="res://assets/rainyhearts.ttf" id="5_84nj1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjmnt"]
-bg_color = Color(0.933333, 0.933333, 0.933333, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
+[sub_resource type="ImageTexture" id="ImageTexture_6hxwa"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjpr"]
-bg_color = Color(0.156863, 0.156863, 0.156863, 0.654902)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0, 0, 0, 0.2)
-shadow_size = 3
-shadow_offset = Vector2(3, 3)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rq1db"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6t7f"]
-bg_color = Color(0.929412, 0.368627, 0.341176, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pdbv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hn2j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5eu3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yds21"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwso2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bga8j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5gdyl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l60tk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nba7"]
+
+[sub_resource type="Theme" id="Theme_6kilc"]
+HScrollBar/icons/decrement = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/decrement_highlight = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/decrement_pressed = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment_highlight = SubResource("ImageTexture_6hxwa")
+HScrollBar/icons/increment_pressed = SubResource("ImageTexture_6hxwa")
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_rq1db")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_8pdbv")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_3hn2j")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_5eu3x")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_yds21")
+VScrollBar/icons/decrement = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_6hxwa")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_6hxwa")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_vwso2")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_bga8j")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_5gdyl")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_l60tk")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_7nba7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5ddv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxa0b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uywoo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6iryb"]
+bg_color = Color(0.156863, 0.192157, 0.203922, 0.345098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.666667, 0.0352941, 0.505882)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+expand_margin_left = 20.0
+expand_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ywkd"]
-bg_color = Color(0.956863, 0.733333, 0.180392, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y428h"]
+bg_color = Color(0.156863, 0.192157, 0.203922, 0.345098)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejc07"]
-bg_color = Color(0.317647, 0.788235, 0.25098, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+expand_margin_left = 20.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
 
 [node name="Main" type="Node2D"]
 position = Vector2(17, 7)
@@ -51,69 +95,107 @@ script = ExtResource("1_0s5f5")
 [node name="Slime" parent="." instance=ExtResource("3_7stg1")]
 position = Vector2(-26, 142)
 
-[node name="UI" parent="." instance=ExtResource("4_oyxyp")]
-z_index = 1
+[node name="Dino" parent="." instance=ExtResource("1_skgvb")]
+position = Vector2(-430, 600)
 
-[node name="TyperUI" type="Control" parent="."]
+[node name="UI2" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -9.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 31.0
+script = ExtResource("5_75xuf")
 
-[node name="Panel2" type="Panel" parent="TyperUI"]
-custom_minimum_size = Vector2(800, 20)
-layout_mode = 0
-offset_left = 144.0
-offset_top = 376.0
-offset_right = 944.0
-offset_bottom = 416.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bjmnt")
+[node name="Container" type="BoxContainer" parent="UI2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -981.0
+offset_top = 580.0
+offset_right = 19.0
+offset_bottom = 829.0
+grow_horizontal = 0
+grow_vertical = 0
+vertical = true
 
-[node name="Panel" type="Panel" parent="TyperUI"]
-custom_minimum_size = Vector2(800, 500)
-layout_mode = 0
-offset_left = 144.0
-offset_top = 376.0
-offset_right = 844.0
-offset_bottom = 876.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_onjpr")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TyperUI"]
-layout_mode = 0
-offset_left = 156.0
-offset_top = 376.0
-offset_right = 256.0
-offset_bottom = 416.0
-
-[node name="Button" type="Button" parent="TyperUI/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+[node name="TextEdit" type="TextEdit" parent="UI2/Container"]
+custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_q6t7f")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_6kilc")
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 0.235294)
+theme_override_fonts/font = ExtResource("5_84nj1")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5ddv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fxa0b")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_uywoo")
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+scroll_v_scroll_speed = 20.0
+scroll_fit_content_height = true
 
-[node name="Button2" type="Button" parent="TyperUI/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+[node name="Label" type="RichTextLabel" parent="UI2/Container"]
+custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ywkd")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_6kilc")
+theme_override_colors/default_color = Color(1, 1, 1, 0.231373)
+theme_override_fonts/normal_font = ExtResource("5_84nj1")
+theme_override_font_sizes/bold_italics_font_size = 90
+theme_override_font_sizes/italics_font_size = 90
+theme_override_font_sizes/mono_font_size = 90
+theme_override_font_sizes/normal_font_size = 90
+theme_override_font_sizes/bold_font_size = 90
+theme_override_styles/focus = SubResource("StyleBoxFlat_fxa0b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a5ddv")
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
-[node name="Button3" type="Button" parent="TyperUI/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+[node name="LineEdit" type="LineEdit" parent="UI2/Container"]
 layout_mode = 2
-size_flags_horizontal = 6
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_ejc07")
-
-[node name="Dino" parent="." instance=ExtResource("1_skgvb")]
-z_index = 2
-position = Vector2(-430, 600)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 0.883415, 0.609577, 1)
+theme_override_fonts/font = ExtResource("5_84nj1")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxFlat_6iryb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y428h")
+max_length = 30
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink_interval = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(6, 75)
 
 [connection signal="conjuring_end" from="." to="." method="_on_conjuring_end"]
 [connection signal="conjuring_start" from="." to="." method="_on_conjuring_start"]
-[connection signal="invalid_spellword" from="UI" to="UI" method="_on_invalid_spellword"]
-[connection signal="valid_spellword" from="UI" to="UI" method="_on_valid_spellword"]
+[connection signal="invalid_spellword" from="UI2" to="UI2" method="_on_invalid_spellword"]
+[connection signal="valid_spellword" from="UI2" to="UI2" method="_on_valid_spellword"]
+[connection signal="gui_input" from="UI2/Container/LineEdit" to="UI2" method="_gui_input"]
+[connection signal="text_changed" from="UI2/Container/LineEdit" to="UI2" method="_on_text_changed"]
