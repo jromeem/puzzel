@@ -1,8 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=33 format=3 uid="uid://olgdco8lthmf"]
 
-[ext_resource type="Script" path="res://entities/player/player.gd" id="1_7xbfo"]
+[ext_resource type="Script" path="res://entities/player/dino.gd" id="1_7xbfo"]
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/player/DinoSprites - vita.png" id="1_33ppp"]
 [ext_resource type="Texture2D" uid="uid://dohdhf6w7ohpn" path="res://spells/Free Smoke Fx  Pixel 05.png" id="1_mcgx0"]
+[ext_resource type="Script" path="res://state_machine.gd" id="4_7rn2m"]
+[ext_resource type="Script" path="res://scenes/idle_state.gd" id="5_enxiw"]
+[ext_resource type="Script" path="res://scenes/walking_state.gd" id="6_krq07"]
+[ext_resource type="Script" path="res://scenes/conjuring_state.gd" id="7_rbcmj"]
+[ext_resource type="Script" path="res://scenes/casting_state.gd" id="8_gf7vc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgoms"]
 atlas = ExtResource("1_mcgx0")
@@ -199,7 +204,7 @@ animations = [{
 radius = 26.36
 height = 112.72
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Dino" type="CharacterBody2D"]
 script = ExtResource("1_7xbfo")
 
 [node name="ConjuringFX" type="AnimatedSprite2D" parent="."]
@@ -214,10 +219,34 @@ frame_progress = 0.507187
 position = Vector2(56, -63)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
-animation = &"step"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.965413
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(51, -56)
 shape = SubResource("CapsuleShape2D_jfbed")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_7rn2m")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+script = ExtResource("5_enxiw")
+dino = NodePath("../..")
+
+[node name="Walking_Left" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+script = ExtResource("6_krq07")
+dino = NodePath("../..")
+direction = -1
+
+[node name="Walking_Right" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+script = ExtResource("6_krq07")
+dino = NodePath("../..")
+
+[node name="Conjuring" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+script = ExtResource("7_rbcmj")
+dino = NodePath("../..")
+
+[node name="Casting" type="Node" parent="StateMachine" node_paths=PackedStringArray("dino")]
+script = ExtResource("8_gf7vc")
+dino = NodePath("../..")

@@ -34,7 +34,6 @@ signal suffix_detected(suffix)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('ready')
 	label.text = ''
 	line_edit.text = ''
 	line_edit.mouse_filter = line_edit.MOUSE_FILTER_IGNORE
