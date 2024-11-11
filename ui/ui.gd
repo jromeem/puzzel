@@ -1,7 +1,7 @@
 class_name UI extends Control
 
 var isReady = false
-var spellword: Spell
+var spellword: SpellParser
 var processed_text = ''
 const MAX_HISTORY_LINES = 20
 
@@ -38,7 +38,7 @@ func disable_line_edit():
 	line_edit.release_focus()
 
 func emit_spell_ready(): 
-	spellword = Spell.new(processed_text)
+	spellword = SpellParser.new(processed_text)
 	if spellword.is_valid:
 		spell_ready.emit(spellword.spell_components)
 

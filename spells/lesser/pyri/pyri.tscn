@@ -92,7 +92,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tbj46")
 }],
-"loop": true,
+"loop": false,
 "name": &"end",
 "speed": 5.0
 }, {
@@ -121,7 +121,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jhcf6")
 }],
-"loop": true,
+"loop": false,
 "name": &"loop",
 "speed": 5.0
 }, {
@@ -138,7 +138,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e2pkg")
 }],
-"loop": true,
+"loop": false,
 "name": &"start",
 "speed": 5.0
 }]
@@ -147,15 +147,15 @@ animations = [{
 radius = 6.0
 height = 16.0
 
-[node name="Pyri" type="Node2D"]
+[node name="Pyri" type="Area2D"]
+scale = Vector2(10, 10)
 script = ExtResource("1_kwsjb")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SpellAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(17, 7)
 sprite_frames = SubResource("SpriteFrames_frngo")
 animation = &"start"
-autoplay = "loop"
-frame_progress = 0.861088
+autoplay = "start"
 script = ExtResource("5_8rvjn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

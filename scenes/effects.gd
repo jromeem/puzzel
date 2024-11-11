@@ -4,13 +4,27 @@ extends Node
 @onready var slime: CharacterBody2D = $"../Slime"
 @onready var ui: UI = $"../UI"
 
-# Called when the node enters the scene tree for the first time.
+var active_spells: Array[SpellAction] = []
+
 func _ready() -> void:
-	ui.connect("spell_ready", on_spell_ready)
+	ui.connect("spell_ready", _on_spell_ready)
 
-func on_spell_ready(spell_components):
-	print(spell_components) 
+func _on_spell_ready(spell_components: Dictionary) -> void:
+	var spell_action: SpellAction
+	
+	match spell_components["root"]:
+		"pyri":
+			print('Creating Pyri spell')
+			spell_action = Pyri.new(dino, [slime])
+			print('Adding Pyri to scene tree')
+			add_child(spell_action)
+			spell_action.connect("spell_completed", _on_spell_completed.bind(spell_action))
+			active_spells.append(spell_action)
+			print('Casting Pyri')
+			spell_action.cast()
+		# Add more spells here
+		_:
+			print("Unknown spell: ", spell_components["root"])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_spell_completed(spell: SpellAction) -> void:
+	active_spells.erase(spell)

@@ -1,4 +1,4 @@
-class_name Spell extends Node
+class_name SpellParser extends Node
 
 func _init(text) -> void:
 	spell_input = text

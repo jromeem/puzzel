@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://i2qljuw3jcf8"]
+
+[ext_resource type="Script" path="res://spells/parser/spell_parser.gd" id="1_m78m5"]
+
+[node name="Spell Parser" type="Node"]
+script = ExtResource("1_m78m5")

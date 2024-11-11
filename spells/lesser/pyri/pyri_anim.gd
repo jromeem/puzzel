@@ -1,26 +1,23 @@
-extends AnimatedSprite2D
+extends SpellAnimation
 
-var loop = 0
-var MAX_LOOPS = 3
+var loop_count := 0
+const MAX_LOOPS := 3
 
-@onready var sprite: AnimatedSprite2D = $"."
+func _ready() -> void:
+	super._ready()  # Important: Call parent _ready to set up base signal connection
 
-func cast():
-	sprite.play("start")
-
-# for starting animation, looping an animation, then finishing animation
-func _on_animation_finished():
-	var anim = sprite.animation
-	match (anim):
+func _on_animation_finished() -> void:
+	
+	match animation:
 		"start":
-			if (sprite.animation_finished):
-				sprite.play("loop")
+			play("loop")
 		"loop":
-			if (sprite.animation_finished):
-				loop += 1
-				sprite.play("loop")
-			if (loop > MAX_LOOPS):
-				sprite.play("end")
+			loop_count += 1
+			if loop_count >= MAX_LOOPS:
+				play("end")
+			else:
+				play("loop")
 		"end":
-			if (sprite.animation_finished):
-				queue_free()
+			spell_animation_finished.emit()
+		_:
+			pass

@@ -7,17 +7,14 @@ var current_state: State
 var states: Dictionary = {}
 
 func _ready():
-	print("StateMachine _ready called")
 	for child in get_children():
 		if child is State:
 			var state_name = child.name.to_lower().replace(' ', '_')
 			states[state_name] = child
 			child.Transitioned.connect(on_child_transitioned)
-			print("Added state: ", state_name)
 	
 	if initial_state:
 		current_state = initial_state
-		print("Intial state: ", initial_state)
 
 func _process(delta: float):
 	if current_state:
