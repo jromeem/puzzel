@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=34 format=3 uid="uid://olgdco8lthmf"]
 
 [ext_resource type="Script" path="res://entities/dino/dino.gd" id="1_7xbfo"]
 [ext_resource type="Texture2D" uid="uid://dohdhf6w7ohpn" path="res://spells/Free Smoke Fx  Pixel 05.png" id="1_mcgx0"]
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/dino/media/DinoSprites - vita.png" id="3_x3f25"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_7rn2m"]
+[ext_resource type="PackedScene" uid="uid://dafgl6njqscf2" path="res://entities/components/health.tscn" id="4_egmyk"]
 [ext_resource type="Script" path="res://entities/dino/states/idle_state.gd" id="5_enxiw"]
 [ext_resource type="Script" path="res://entities/dino/states/walking_state.gd" id="6_krq07"]
 [ext_resource type="Script" path="res://entities/dino/states/conjuring_state.gd" id="7_rbcmj"]
@@ -221,6 +222,9 @@ scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Health" parent="." instance=ExtResource("4_egmyk")]
+MAX_HEALTH = 20.0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(51, -56)

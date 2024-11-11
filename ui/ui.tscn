@@ -146,10 +146,5 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink_interval = 0.1
 
-[connection signal="invalid_spellword" from="." to="." method="_on_invalid_spellword"]
-[connection signal="prefix_detected" from="." to="." method="_on_prefix_detected"]
-[connection signal="root_detected" from="." to="." method="_on_root_detected"]
-[connection signal="suffix_detected" from="." to="." method="_on_suffix_detected"]
-[connection signal="valid_spellword" from="." to="." method="_on_valid_spellword"]
 [connection signal="gui_input" from="Container/LineEdit" to="." method="_gui_input"]
 [connection signal="text_changed" from="Container/LineEdit" to="." method="_on_text_changed"]

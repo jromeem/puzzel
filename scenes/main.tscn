@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2l2wgtatrw63"]
+[gd_scene load_steps=8 format=3 uid="uid://d2l2wgtatrw63"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_0s5f5"]
 [ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
 [ext_resource type="PackedScene" uid="uid://olgdco8lthmf" path="res://entities/dino/dino.tscn" id="1_skgvb"]
 [ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
+[ext_resource type="Script" path="res://scenes/effects.gd" id="5_dow1g"]
+[ext_resource type="PackedScene" uid="uid://d2j1nhfr212lg" path="res://spells/lesser/pyri/pyri.tscn" id="5_nkviw"]
 [ext_resource type="PackedScene" uid="uid://blt1mxiqcc5s1" path="res://ui/ui.tscn" id="5_whbun"]
 
 [node name="Main" type="Node2D"]
@@ -18,6 +20,12 @@ position = Vector2(-26, 142)
 [node name="Dino" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("1_skgvb")]
 position = Vector2(-430, 600)
 ui = NodePath("../UI")
+
+[node name="Effects" type="Node" parent="."]
+script = ExtResource("5_dow1g")
+
+[node name="Pyri" parent="Effects" instance=ExtResource("5_nkviw")]
+script = null
 
 [node name="UI" parent="." instance=ExtResource("5_whbun")]
 
