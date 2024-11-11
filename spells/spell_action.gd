@@ -31,7 +31,6 @@ func cast() -> void:
 	if sprite:
 		sprite.start_animation()
 	else:
-		print("No sprite found for cast!")
 		_apply_effects()
 		emit_signal("spell_completed")
 		queue_free()

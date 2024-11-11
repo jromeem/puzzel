@@ -1,7 +1,7 @@
 extends SpellAnimation
 
 var loop_count := 0
-const MAX_LOOPS := 3
+const MAX_LOOPS := 1
 
 func _ready() -> void:
 	super._ready()  # Important: Call parent _ready to set up base signal connection

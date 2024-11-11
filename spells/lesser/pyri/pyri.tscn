@@ -94,7 +94,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"end",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,7 +123,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"loop",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -140,7 +140,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"start",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_milyk"]
@@ -154,7 +154,7 @@ script = ExtResource("1_kwsjb")
 [node name="SpellAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(17, 7)
 sprite_frames = SubResource("SpriteFrames_frngo")
-animation = &"start"
+animation = &"end"
 autoplay = "start"
 script = ExtResource("5_8rvjn")
 
