@@ -1,10 +1,48 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2j1nhfr212lg"]
+[gd_scene load_steps=32 format=3 uid="uid://d2j1nhfr212lg"]
 
 [ext_resource type="Script" path="res://spells/lesser/pyri/pyri.gd" id="1_kwsjb"]
 [ext_resource type="Texture2D" uid="uid://dtqiq5chkgwij" path="res://spells/lesser/pyri/media/burning_end_1.png" id="2_lvxdb"]
+[ext_resource type="Script" path="res://spells/spell_animation.gd" id="3_2do47"]
 [ext_resource type="Texture2D" uid="uid://b1bvpppg06dpn" path="res://spells/lesser/pyri/media/burning_loop_1.png" id="3_rfdcx"]
+[ext_resource type="Texture2D" uid="uid://bqtuyru65bq8k" path="res://spells/lesser/pyri/media/Firebolt SpriteSheet.png" id="4_nu3yb"]
 [ext_resource type="Texture2D" uid="uid://i5lrm1e322nw" path="res://spells/lesser/pyri/media/burning_start_1.png" id="4_yrno3"]
 [ext_resource type="Script" path="res://spells/lesser/pyri/pyri_anim.gd" id="5_8rvjn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c23ww"]
+atlas = ExtResource("4_nu3yb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rwch"]
+atlas = ExtResource("4_nu3yb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk880"]
+atlas = ExtResource("4_nu3yb")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ehl"]
+atlas = ExtResource("4_nu3yb")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnne5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c23ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rwch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk880")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16ehl")
+}],
+"loop": false,
+"name": &"travel",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprxs"]
 atlas = ExtResource("2_lvxdb")
@@ -121,7 +159,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jhcf6")
 }],
-"loop": false,
+"loop": true,
 "name": &"loop",
 "speed": 10.0
 }, {
@@ -148,14 +186,23 @@ radius = 6.0
 height = 16.0
 
 [node name="Pyri" type="Area2D"]
-scale = Vector2(10, 10)
 script = ExtResource("1_kwsjb")
 
+[node name="TravelAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-40, 32)
+rotation = -0.907571
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_dnne5")
+animation = &"travel"
+script = ExtResource("3_2do47")
+
 [node name="SpellAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(17, 7)
+z_index = 10
+position = Vector2(-2, -32)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_frngo")
-animation = &"end"
-autoplay = "start"
+animation = &"start"
+offset = Vector2(0, -10)
 script = ExtResource("5_8rvjn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -4,6 +4,7 @@ signal conjuring_start
 signal conjuring_end
 
 @export var ui: UI
+
 @onready var dino_sprite: AnimatedSprite2D = $DinoSprite
 @onready var conjuring_fx: AnimatedSprite2D = $ConjuringFX
 @onready var state_machine: StateMachine = $StateMachine

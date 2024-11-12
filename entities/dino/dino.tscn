@@ -220,7 +220,7 @@ frame_progress = 0.507187
 position = Vector2(56, -63)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_fxkh3")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="Health" parent="." instance=ExtResource("4_egmyk")]

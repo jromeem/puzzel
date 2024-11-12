@@ -4,7 +4,7 @@ signal spell_completed
 signal effect_applied
 
 var caster: CharacterBody2D
-var targets: Array[Node2D]
+var targets: Array
 var spell_type: int
 var damage: float
 var duration: float
@@ -13,9 +13,12 @@ var duration: float
 
 enum SpellType {ATTACK, DEBUFF, HEAL, BUFF, STATUS, ENVIRON}
 
-func _init(spell_caster: CharacterBody2D, spell_targets: Array[Node2D]):
+func _init(spell_caster: CharacterBody2D, spell_targets: Array):
 	caster = spell_caster
 	targets = spell_targets
+	# Set initial position to caster's position
+	position = spell_caster.position
+	print("SpellAction initialized at position: ", position)
 
 func _ready() -> void:
 	# Find and setup sprite
@@ -29,11 +32,27 @@ func _ready() -> void:
 
 func cast() -> void:
 	if sprite:
-		sprite.start_animation()
+		# Get target position relative to spell's position
+		var target_pos = targets[0].position if targets.size() > 0 else position
+		print("Casting from ", position, " to ", target_pos)
+		
+		# Connect to travel completion
+		if !sprite.travel_completed.is_connected(_on_travel_completed):
+			sprite.travel_completed.connect(_on_travel_completed)
+		
+		# Start travel phase from local position (0,0) to target position relative to spell
+		var relative_target = target_pos - position
+		sprite.start_travel(Vector2.ZERO, relative_target)
 	else:
+		print("No sprite found!")
 		_apply_effects()
 		emit_signal("spell_completed")
 		queue_free()
+
+func _on_travel_completed() -> void:
+	print('here yet?')
+	# Travel is done, start the effect animation
+	sprite.start_animation()
 
 func _on_animation_started() -> void:
 	_apply_effects()
