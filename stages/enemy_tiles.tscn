@@ -3,29 +3,31 @@
 [ext_resource type="PackedScene" uid="uid://bmrhg2o8ugco" path="res://stages/tile.tscn" id="1_3g5qe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdyy"]
-size = Vector2(228.843, 31.8258)
+size = Vector2(216, 31.8258)
 
 [node name="Enemy Tiles" type="Area2D"]
-position = Vector2(-5, -2.00012)
-rotation = 0.509636
 scale = Vector2(5, 5)
-skew = 0.553269
 
 [node name="Tile0" parent="." instance=ExtResource("1_3g5qe")]
-position = Vector2(-113.615, 16.507)
+position = Vector2(-108, 17)
+scale = Vector2(1, 1)
 
 [node name="Tile1" parent="." instance=ExtResource("1_3g5qe")]
-position = Vector2(-64.1821, 16.6795)
+position = Vector2(-62, 16.8)
+scale = Vector2(1, 1)
 
 [node name="Tile2" parent="." instance=ExtResource("1_3g5qe")]
-position = Vector2(-16.3714, 16.834)
+position = Vector2(-16, 17)
+scale = Vector2(1, 1)
 
 [node name="Tile3" parent="." instance=ExtResource("1_3g5qe")]
-position = Vector2(33.6094, 16.8676)
+position = Vector2(30.0094, 16.8676)
+scale = Vector2(1, 1)
 
 [node name="Tile4" parent="." instance=ExtResource("1_3g5qe")]
-position = Vector2(82.7222, 16.9496)
+position = Vector2(76, 17)
+scale = Vector2(1, 1)
 
 [node name="EnemyTileCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0.500809, 0.956207)
+position = Vector2(8.39233e-06, 0.956207)
 shape = SubResource("RectangleShape2D_ycdyy")

@@ -1,37 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2l2wgtatrw63"]
+[gd_scene load_steps=6 format=3 uid="uid://d2l2wgtatrw63"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_0s5f5"]
 [ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
 [ext_resource type="PackedScene" uid="uid://olgdco8lthmf" path="res://entities/dino/dino.tscn" id="1_skgvb"]
 [ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
-[ext_resource type="PackedScene" uid="uid://blvlf55w7xvc0" path="res://scenes/effects.tscn" id="5_5enpa"]
-[ext_resource type="PackedScene" uid="uid://d2j1nhfr212lg" path="res://spells/lesser/pyri/pyri.tscn" id="5_nkviw"]
 [ext_resource type="PackedScene" uid="uid://blt1mxiqcc5s1" path="res://ui/ui.tscn" id="5_whbun"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(17, 7)
+position = Vector2(186, -13)
 script = ExtResource("1_0s5f5")
 
 [node name="Level" parent="." instance=ExtResource("1_ksyq6")]
+position = Vector2(0, 0)
+scale = Vector2(4, 4)
 
 [node name="Slime" parent="." instance=ExtResource("3_7stg1")]
-z_index = 15
-position = Vector2(-31, 153)
+position = Vector2(-3, -271)
 
-[node name="Dino" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("1_skgvb")]
-position = Vector2(-430, 600)
+[node name="Dino" parent="." node_paths=PackedStringArray("ui", "level") instance=ExtResource("1_skgvb")]
+position = Vector2(1, -15)
 ui = NodePath("../UI")
-
-[node name="Effects" parent="." instance=ExtResource("5_5enpa")]
-position = Vector2(-311, 369)
-
-[node name="Pyri" parent="." instance=ExtResource("5_nkviw")]
-visible = false
-position = Vector2(-90, 209)
-rotation = 0.144862
-skew = -0.195477
+level = NodePath("../Level")
 
 [node name="UI" parent="." instance=ExtResource("5_whbun")]
+offset_left = 100.0
+offset_top = 308.0
+offset_right = 140.0
+offset_bottom = 348.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(6, 75)
+position = Vector2(10, -283)
+zoom = Vector2(1.5, 1.5)

@@ -78,6 +78,7 @@ sources/0 = SubResource("TileSetAtlasSource_yakoi")
 size = Vector2(31.8366, 31.8056)
 
 [node name="Tile" type="Area2D"]
+scale = Vector2(2, 2)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-128, 0)
