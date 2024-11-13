@@ -15,6 +15,7 @@ func _on_animation_finished():
 	pass
 	
 func start_animation():
+	print('start anim222', self.is_playing())
 	play('start')
 
 func _ready() -> void:
@@ -40,7 +41,7 @@ func _process(delta: float) -> void:
 		var distance = position.distance_to(target_position)
 		var move_distance = travel_speed * delta
 		
-		print("Current pos: ", position, " Target: ", target_position, " Distance: ", distance)
+		#print("Current pos: ", position, " Target: ", target_position, " Distance: ", distance)
 		
 		if distance <= move_distance:
 			# Reached the target

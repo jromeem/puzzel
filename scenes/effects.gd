@@ -2,7 +2,7 @@
 extends Node
 
 @onready var dino: Dino = $"../Dino"
-@onready var slime: CharacterBody2D = $"../Slime"
+@onready var slime: Area2D = $"../Slime"
 @onready var ui: UI = $"../UI"
 
 var spell_registry = {

@@ -1,4 +1,6 @@
-class_name Dino extends CharacterBody2D
+class_name Dino extends Area2D
+
+# a lot of logic here that needs to be separated!!
 
 signal conjuring_start
 signal conjuring_end
@@ -6,10 +8,12 @@ signal conjuring_end
 @export var ui: UI
 @export var level: Level
 
-@onready var slime: CharacterBody2D = $"../Slime"
+@onready var slime: Area2D = $"../Slime" # maybe needs to be somewhere else?
 @onready var dino_sprite: AnimatedSprite2D = $DinoSprite
 @onready var conjuring_fx: AnimatedSprite2D = $ConjuringFX
 @onready var state_machine: StateMachine = $StateMachine
+
+@onready var character: Character = $Character # the soul
 
 enum Tile { LEFT = 0, MIDDLE = 1, RIGHT = 2 }
 enum Direction { LEFT = -1, RIGHT = 1 }

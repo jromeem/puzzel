@@ -3,7 +3,7 @@ class_name SpellAction extends Node2D
 signal spell_completed
 signal effect_applied
 
-var caster: CharacterBody2D
+var caster: Dino
 var targets: Array
 var spell_type: int
 var damage: float
@@ -13,7 +13,7 @@ var duration: float
 
 enum SpellType {ATTACK, DEBUFF, HEAL, BUFF, STATUS, ENVIRON}
 
-func _init(spell_caster: CharacterBody2D, spell_targets: Array):
+func _init(spell_caster: Dino, spell_targets: Array):
 	caster = spell_caster
 	targets = spell_targets
 	# Set initial position to caster's position
@@ -47,10 +47,11 @@ func cast() -> void:
 		print("No sprite found!")
 		_apply_effects()
 		emit_signal("spell_completed")
-		queue_free()
+		#queue_free()
 
 func _on_travel_completed() -> void:
 	print('here yet?')
+	#queue_free()
 	# Travel is done, start the effect animation
 	sprite.start_animation()
 
@@ -59,7 +60,7 @@ func _on_animation_started() -> void:
 
 func _on_animation_finished() -> void:
 	emit_signal("spell_completed")
-	queue_free()
+	#queue_free()
 
 # Virtual method for spell-specific setup
 func _setup_spell() -> void:

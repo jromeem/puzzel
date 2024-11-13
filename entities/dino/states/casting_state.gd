@@ -1,6 +1,6 @@
 class_name CastingState extends State
 
-@export var dino: CharacterBody2D
+@export var dino: Dino
 
 func Enter():
 	print('are you casting?')

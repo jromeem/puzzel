@@ -6,7 +6,11 @@ const MAX_LOOPS = 3
 
 func _ready() -> void:
 	print("PyriAnimation ready")
-
+	play("start")
+	
+func start_animation():
+	pass	
+	
 func _on_animation_finished() -> void:
 	if is_traveling:
 		return  # Don't process animation sequences during travel

@@ -4,7 +4,7 @@ class_name Main extends Node2D
 @onready var player_tiles: Area2D = $"Level/Player Tiles"
 @onready var enemy_tiles: Area2D = $"Level/Enemy Tiles"
 @onready var dino: Dino = $Dino
-@onready var slime: CharacterBody2D = $Slime
+@onready var slime: Area2D = $Slime
 
 var player_tile_pos
 var enemy_tile_pos

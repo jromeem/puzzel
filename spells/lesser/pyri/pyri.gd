@@ -5,7 +5,7 @@ const PYRI_DAMAGE = 25.0
 const PYRI_DURATION = 1.0
 const PYRI_SCENE = preload("res://spells/lesser/pyri/pyri.tscn")
 
-func _init(spell_caster: CharacterBody2D, spell_targets: Array):
+func _init(spell_caster: Dino, spell_targets: Array):
 	super._init(spell_caster, spell_targets)
 
 func _ready() -> void:
@@ -30,7 +30,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if sprite and sprite.is_traveling:
-		print("Spell current position: ", global_position, " Sprite position: ", sprite.global_position)
+		pass
+		#print("Spell current position: ", global_position, " Sprite position: ", sprite.global_position)
 
 func _apply_effects() -> void:
 	for target in targets:

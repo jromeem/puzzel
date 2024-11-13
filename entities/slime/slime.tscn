@@ -1,11 +1,13 @@
-[gd_scene load_steps=51 format=3 uid="uid://dngih7bngted0"]
+[gd_scene load_steps=53 format=3 uid="uid://dngih7bngted0"]
 
+[ext_resource type="Script" path="res://entities/slime/slime.gd" id="1_5t5w8"]
 [ext_resource type="Texture2D" uid="uid://c0xrkupiw7qgg" path="res://entities/slime/slime_die.png" id="1_55xku"]
 [ext_resource type="Texture2D" uid="uid://bb1wds43xofcd" path="res://entities/slime/slime_hit.png" id="2_g5532"]
 [ext_resource type="Texture2D" uid="uid://cl8yf4hs20hf1" path="res://entities/slime/slime_idle1.png" id="3_a1fh7"]
 [ext_resource type="Texture2D" uid="uid://crcqpxh0t711g" path="res://entities/slime/slime_idle2.png" id="4_20icf"]
 [ext_resource type="Texture2D" uid="uid://dfrjyfo5cmelx" path="res://entities/slime/slime_idle3.png" id="5_426ed"]
 [ext_resource type="Texture2D" uid="uid://bvaypj6ibosml" path="res://entities/slime/slime_jump.png" id="6_qxpwd"]
+[ext_resource type="Script" path="res://character.gd" id="7_htnft"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1q577"]
 atlas = ExtResource("1_55xku")
@@ -337,8 +339,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_640dh"]
 radius = 7.0
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="Area2D"]
 scale = Vector2(4, 4)
+script = ExtResource("1_5t5w8")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hlvc5")
@@ -349,3 +352,9 @@ offset = Vector2(-6, -5)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_640dh")
+
+[node name="Character" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_htnft")
+sprite = NodePath("")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
