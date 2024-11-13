@@ -6,6 +6,7 @@ signal conjuring_end
 @export var ui: UI
 @export var level: Level
 
+@onready var slime: CharacterBody2D = $"../Slime"
 @onready var dino_sprite: AnimatedSprite2D = $DinoSprite
 @onready var conjuring_fx: AnimatedSprite2D = $ConjuringFX
 @onready var state_machine: StateMachine = $StateMachine
@@ -17,14 +18,7 @@ var current_tile: Tile = Tile.MIDDLE
 var movement_tween: Tween = null
 var is_moving: bool = false
 var conjure_queued: bool = false
-
-const TILE_POSITIONS = {
-	"0": Vector2(-139, -15),    # Tile.LEFT
-	"1": Vector2(1, -15),    # Tile.MIDDLE
-	"2": Vector2(141, -15)     # Tile.RIGHT
-}
-
-#const TILE_POSITIONS = { "0": Vector2(-1, 60), "1": Vector2(138, 60), "2": Vector2(276, 60) }
+var TILE_POSITIONS
 
 const MOVEMENT_CONSTRAINTS = {
 	"0": { "-1": null, "1": "1" },     # LEFT tile: can't go left, can go right to MIDDLE
@@ -33,7 +27,10 @@ const MOVEMENT_CONSTRAINTS = {
 }
 
 func _ready() -> void:
-	print(level.populate_positions(level.player_tiles))
+	TILE_POSITIONS = level.populate_positions(
+		level.player_tiles,
+		position.y,
+		level.player_tiles.global_position)
 	conjuring_fx.visible = false
 
 func can_move(direction: Direction) -> bool:

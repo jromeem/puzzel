@@ -24,5 +24,6 @@ func _on_spell_ready(spell_components: Dictionary) -> void:
 		push_warning("Unknown spell: %s" % spell_name)
 
 func _on_spell_completed(spell: SpellAction) -> void:
+	print('_on_spell_completed')
 	# Cleanup happens automatically through queue_free()
 	pass

@@ -15,7 +15,6 @@ func _on_animation_finished():
 	pass
 	
 func start_animation():
-	print('here yet2? ')
 	play('start')
 
 func _ready() -> void:

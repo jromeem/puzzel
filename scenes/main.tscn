@@ -1,26 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2l2wgtatrw63"]
+[gd_scene load_steps=7 format=3 uid="uid://d2l2wgtatrw63"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_0s5f5"]
 [ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
 [ext_resource type="PackedScene" uid="uid://olgdco8lthmf" path="res://entities/dino/dino.tscn" id="1_skgvb"]
 [ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
+[ext_resource type="PackedScene" uid="uid://blvlf55w7xvc0" path="res://scenes/effects.tscn" id="5_1h81n"]
 [ext_resource type="PackedScene" uid="uid://blt1mxiqcc5s1" path="res://ui/ui.tscn" id="5_whbun"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(186, -13)
 script = ExtResource("1_0s5f5")
 
 [node name="Level" parent="." instance=ExtResource("1_ksyq6")]
-position = Vector2(0, 0)
 scale = Vector2(4, 4)
 
 [node name="Slime" parent="." instance=ExtResource("3_7stg1")]
 position = Vector2(-3, -271)
 
 [node name="Dino" parent="." node_paths=PackedStringArray("ui", "level") instance=ExtResource("1_skgvb")]
-position = Vector2(1, -15)
+position = Vector2(0, -15)
 ui = NodePath("../UI")
 level = NodePath("../Level")
+
+[node name="Effects" parent="." instance=ExtResource("5_1h81n")]
 
 [node name="UI" parent="." instance=ExtResource("5_whbun")]
 offset_left = 100.0
