@@ -1,0 +1,231 @@
+[gd_scene load_steps=22 format=3 uid="uid://duhxr0lcv7xex"]
+
+[ext_resource type="Script" path="res://spells/lesser/pyri/pyri_2.gd" id="1_ch308"]
+[ext_resource type="Texture2D" uid="uid://b1bvpppg06dpn" path="res://spells/lesser/pyri/media/burning_loop_1.png" id="2_dyqc4"]
+[ext_resource type="Texture2D" uid="uid://bqtuyru65bq8k" path="res://spells/lesser/pyri/media/Firebolt SpriteSheet.png" id="3_rd6ts"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8lkf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs740"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgpsd"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8jue"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmpkr"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj2m1"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyfxf"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svvbx"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyk4f"]
+atlas = ExtResource("2_dyqc4")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ya5i"]
+atlas = ExtResource("3_rd6ts")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su6bd"]
+atlas = ExtResource("3_rd6ts")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu16x"]
+atlas = ExtResource("3_rd6ts")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44i3e"]
+atlas = ExtResource("3_rd6ts")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tq4p2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs740")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgpsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8jue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmpkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj2m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyfxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svvbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyk4f")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ya5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu16x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44i3e")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1x8u4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_5fchi"]
+resource_name = "loop"
+length = 0.5334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"loop"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_q81pn"]
+resource_name = "shot"
+length = 0.2667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shot"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s47io"]
+_data = {
+"RESET": SubResource("Animation_1x8u4"),
+"loop": SubResource("Animation_5fchi"),
+"shot": SubResource("Animation_q81pn")
+}
+
+[node name="Pyri2" type="Area2D"]
+script = ExtResource("1_ch308")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p8lkf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tq4p2")
+animation = &"loop"
+autoplay = "loop"
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s47io")
+}
+autoplay = "shot"
+speed_scale = 0.75
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

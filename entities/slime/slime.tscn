@@ -353,8 +353,7 @@ offset = Vector2(-6, -5)
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_640dh")
 
-[node name="Character" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="Character" type="Node" parent="."]
 script = ExtResource("7_htnft")
-sprite = NodePath("")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

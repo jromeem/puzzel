@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d2j1nhfr212lg"]
+[gd_scene load_steps=36 format=3 uid="uid://d2j1nhfr212lg"]
 
 [ext_resource type="Script" path="res://spells/lesser/pyri/pyri.gd" id="1_kwsjb"]
 [ext_resource type="Texture2D" uid="uid://dtqiq5chkgwij" path="res://spells/lesser/pyri/media/burning_end_1.png" id="2_lvxdb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqtuyru65bq8k" path="res://spells/lesser/pyri/media/Firebolt SpriteSheet.png" id="4_nu3yb"]
 [ext_resource type="Texture2D" uid="uid://i5lrm1e322nw" path="res://spells/lesser/pyri/media/burning_start_1.png" id="4_yrno3"]
 [ext_resource type="Script" path="res://spells/lesser/pyri/pyri_anim.gd" id="5_8rvjn"]
+[ext_resource type="Script" path="res://spells/lesser/pyri/animation_player.gd" id="8_el2b1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c23ww"]
 atlas = ExtResource("4_nu3yb")
@@ -185,6 +186,57 @@ animations = [{
 radius = 6.0
 height = 16.0
 
+[sub_resource type="Animation" id="Animation_ivaj3"]
+resource_name = "new_animation"
+length = 0.5
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TravelAnimation:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TravelAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0203761, 0.202593, 0.409261),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_yrlci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TravelAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u3xup"]
+_data = {
+"RESET": SubResource("Animation_yrlci"),
+"new_animation": SubResource("Animation_ivaj3")
+}
+
 [node name="Pyri" type="Area2D"]
 script = ExtResource("1_kwsjb")
 
@@ -194,17 +246,26 @@ rotation = -0.907571
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dnne5")
 animation = &"travel"
+frame = 1
 script = ExtResource("3_2do47")
 
 [node name="SpellAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 10
-position = Vector2(-2, -32)
+position = Vector2(167, -37)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_frngo")
-animation = &"start"
+animation = &"loop"
+frame = 1
 offset = Vector2(0, -10)
 script = ExtResource("5_8rvjn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(18, 16)
 shape = SubResource("CapsuleShape2D_milyk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("character")]
+libraries = {
+"": SubResource("AnimationLibrary_u3xup")
+}
+script = ExtResource("8_el2b1")
+character = NodePath("..")
