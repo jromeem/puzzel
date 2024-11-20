@@ -14,6 +14,11 @@ signal conjuring_end
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var character: Character = $Character # the soul
+@onready var health_bar: Control = $HealthBar
+
+var health = Health.new()
+
+var local_signals: Array
 
 enum Tile { LEFT = 0, MIDDLE = 1, RIGHT = 2 }
 enum Direction { LEFT = -1, RIGHT = 1 }
@@ -31,11 +36,23 @@ const MOVEMENT_CONSTRAINTS = {
 }
 
 func _ready() -> void:
+	# register visual components with data resource class
+	# healthbar with the instantiated health object
+	health.set_health(100)
+	health_bar.set_health(health)
+	
+	# movement component ? tiles component
+	# tiles component with the instantianted move object??
+	
 	TILE_POSITIONS = level.populate_positions(
 		level.player_tiles,
 		position.y,
 		level.player_tiles.global_position)
 	conjuring_fx.visible = false
+	local_signals.append(health.signals)
+	
+func take_damage(amount: float):
+	health.changed(amount)
 
 func can_move(direction: Direction) -> bool:
 	var tile_str = str(current_tile as int)
@@ -72,3 +89,9 @@ func _on_conjuring_end() -> void:
 
 func _on_conjuring_start() -> void:
 	ui.toggle_ui()
+
+func _on_tree_entered() -> void:
+	pass # Replace with function body.
+
+func _on_tree_exited() -> void:
+	pass # Replace with function body.

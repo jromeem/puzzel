@@ -1,15 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://olgdco8lthmf"]
+[gd_scene load_steps=34 format=3 uid="uid://olgdco8lthmf"]
 
 [ext_resource type="Script" path="res://entities/dino/dino.gd" id="1_7xbfo"]
 [ext_resource type="Texture2D" uid="uid://dohdhf6w7ohpn" path="res://spells/Free Smoke Fx  Pixel 05.png" id="1_mcgx0"]
 [ext_resource type="Texture2D" uid="uid://d3ve3kqa4tmuk" path="res://entities/dino/media/DinoSprites - vita.png" id="3_x3f25"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_7rn2m"]
-[ext_resource type="PackedScene" uid="uid://dafgl6njqscf2" path="res://entities/components/health.tscn" id="4_egmyk"]
 [ext_resource type="Script" path="res://entities/dino/states/idle_state.gd" id="5_enxiw"]
 [ext_resource type="Script" path="res://entities/dino/states/walking_state.gd" id="6_krq07"]
 [ext_resource type="Script" path="res://entities/dino/states/conjuring_state.gd" id="7_rbcmj"]
 [ext_resource type="Script" path="res://entities/dino/states/casting_state.gd" id="8_gf7vc"]
-[ext_resource type="Script" path="res://character.gd" id="10_jde0e"]
+[ext_resource type="PackedScene" uid="uid://cis30eju1njn1" path="res://common/health_bar.tscn" id="10_adr7q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgoms"]
 atlas = ExtResource("1_mcgx0")
@@ -207,6 +206,7 @@ radius = 6.0
 height = 22.0
 
 [node name="Dino" type="Area2D"]
+position = Vector2(-1, 0)
 scale = Vector2(4, 4)
 script = ExtResource("1_7xbfo")
 
@@ -225,9 +225,6 @@ sprite_frames = SubResource("SpriteFrames_fxkh3")
 animation = &"step"
 autoplay = "idle"
 frame_progress = 0.122914
-
-[node name="Health" parent="." instance=ExtResource("4_egmyk")]
-MAX_HEALTH = 20.0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jfbed")
@@ -257,8 +254,11 @@ dino = NodePath("../..")
 script = ExtResource("8_gf7vc")
 dino = NodePath("../..")
 
-[node name="Character" type="Node" parent="."]
-script = ExtResource("10_jde0e")
+[node name="HealthBar" parent="." instance=ExtResource("10_adr7q")]
+offset_left = -17.0
+offset_top = -24.0
+offset_right = -17.0
+offset_bottom = -24.0
 
 [connection signal="conjuring_end" from="." to="." method="_on_conjuring_end"]
 [connection signal="conjuring_start" from="." to="." method="_on_conjuring_start"]

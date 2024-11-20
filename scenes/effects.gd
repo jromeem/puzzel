@@ -14,26 +14,32 @@ func _ready() -> void:
 
 func summon_spell(spell_name):
 	var spellclass = spell_registry[spell_name]
-	var spell: Pyri2 = spellclass.new()
-	var instance = spell.PYRI_SCENE.instantiate()
-	spell.position = dino.position
+	var spell_instance: Pyri2 = spellclass.new()
+	var instance = spell_instance.PYRI_SCENE.instantiate()
+	var instance2 = spell_instance.PYRI_SCENE.instantiate()
+	
 	add_child(instance)
-	instance.rotate(3 * PI/2)
+	instance.position = dino.position
+	
+	# Start shot animation and movement
 	instance.shot()
-	var movement_tween = create_tween()
-	movement_tween.tween_property(instance, "position", slime.position, 1)
-	movement_tween.tween_callback(do_that.bind(instance))
+	var tween = create_tween()
+	tween.tween_property(instance, "position", slime.position, 0.4)
 	
-func do_that(instance: Pyri2):
-	instance.loop()
-	instance.scale = Vector2(3, 3)
-	instance.rotate(PI/2)
-	var movement_tween = create_tween()
-	movement_tween.tween_property(instance, "position", slime.position, 1)
-	movement_tween.tween_callback(go_away.bind(instance))
-	
-func go_away(instance):
+	# When movement completes, switch to loop animation
+	await tween.finished
+	instance.animation_player.play("RESET")
 	instance.queue_free()
+	
+	add_child(instance2)
+	instance2.animation_player.play("RESET")
+	instance2.position = slime.position
+	instance2.loop()
+	
+	tween = create_tween()
+	tween.tween_property(instance2, "position", slime.position, 1)
+	await tween.finished
+	instance2.queue_free()
 	
 func _on_spell_ready(spell_components: Dictionary) -> void:
 	var spell_name = spell_components["root"]

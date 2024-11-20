@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cis30eju1njn1"]
+
+[ext_resource type="Script" path="res://common/health_bar.gd" id="1_jn8hx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keqt3"]
+bg_color = Color(1, 0.294118, 0.317647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3jha"]
+bg_color = Color(0.882962, 0.711301, 0.668253, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jn8hx")
+
+[node name="AliveContainer" type="BoxContainer" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+
+[node name="Alive" type="Panel" parent="AliveContainer"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_keqt3")
+
+[node name="DeadContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+
+[node name="Dead" type="Panel" parent="DeadContainer"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3jha")

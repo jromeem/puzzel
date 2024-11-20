@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dngih7bngted0"]
+[gd_scene load_steps=54 format=3 uid="uid://dngih7bngted0"]
 
 [ext_resource type="Script" path="res://entities/slime/slime.gd" id="1_5t5w8"]
 [ext_resource type="Texture2D" uid="uid://c0xrkupiw7qgg" path="res://entities/slime/slime_die.png" id="1_55xku"]
@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://crcqpxh0t711g" path="res://entities/slime/slime_idle2.png" id="4_20icf"]
 [ext_resource type="Texture2D" uid="uid://dfrjyfo5cmelx" path="res://entities/slime/slime_idle3.png" id="5_426ed"]
 [ext_resource type="Texture2D" uid="uid://bvaypj6ibosml" path="res://entities/slime/slime_jump.png" id="6_qxpwd"]
-[ext_resource type="Script" path="res://character.gd" id="7_htnft"]
+[ext_resource type="Script" path="res://common/character.gd" id="7_htnft"]
+[ext_resource type="PackedScene" uid="uid://cis30eju1njn1" path="res://common/health_bar.tscn" id="9_cjqf2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1q577"]
 atlas = ExtResource("1_55xku")
@@ -232,7 +233,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit",
-"speed": 4.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -345,9 +346,9 @@ script = ExtResource("1_5t5w8")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hlvc5")
-animation = &"idle1"
+animation = &"hit"
 autoplay = "idle1"
-frame_progress = 0.409337
+frame_progress = 0.845203
 offset = Vector2(-6, -5)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -356,4 +357,10 @@ shape = SubResource("CircleShape2D_640dh")
 [node name="Character" type="Node" parent="."]
 script = ExtResource("7_htnft")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="HealthBar" parent="." instance=ExtResource("9_cjqf2")]
+offset_left = -16.5
+offset_top = -20.25
+offset_right = 133.5
+offset_bottom = 19.75
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

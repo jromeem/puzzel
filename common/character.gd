@@ -20,8 +20,7 @@ signal health_depleted
 #signal mana_depleted
 
 func _ready() -> void:
-	health_low.connect(_on_health_low)
-	health_low.connect(_on_health_depleted)
+	pass
 	
 func _process(_delta: float):
 	if health <= 0:
@@ -30,8 +29,3 @@ func _process(_delta: float):
 	if health < (max_health * 0.20):
 		health_low.emit()
 	
-func _on_health_depleted():
-	print('health is depleted!')	
-
-func _on_health_low():
-	print('health is low!')

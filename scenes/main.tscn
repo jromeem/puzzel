@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2l2wgtatrw63"]
+[gd_scene load_steps=8 format=3 uid="uid://d2l2wgtatrw63"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_0s5f5"]
 [ext_resource type="PackedScene" uid="uid://b6o41f7vollu" path="res://stages/level.tscn" id="1_ksyq6"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dngih7bngted0" path="res://entities/slime/slime.tscn" id="3_7stg1"]
 [ext_resource type="PackedScene" uid="uid://blvlf55w7xvc0" path="res://scenes/effects.tscn" id="5_1h81n"]
 [ext_resource type="PackedScene" uid="uid://blt1mxiqcc5s1" path="res://ui/ui.tscn" id="5_whbun"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3aff"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0s5f5")
@@ -32,3 +34,9 @@ offset_bottom = 348.0
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(10, -283)
 zoom = Vector2(1.5, 1.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r3aff")
+
+[connection signal="tree_entered" from="Dino" to="Dino" method="_on_tree_entered"]
+[connection signal="tree_exited" from="Dino" to="Dino" method="_on_tree_exited"]
