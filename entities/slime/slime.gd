@@ -12,7 +12,8 @@ func _ready() -> void:
 	health.set_health(41)
 	health_bar.set_health(health)
 	health.connect("health_zero", _on_health_zero)
-
+	animated_sprite.connect("animation_finished", _on_animation_finished)
+	
 # complex spell calculation takes place here
 func _on_area_entered(area: Area2D) -> void:
 	if (area is Pyri2):
@@ -22,11 +23,18 @@ func _on_area_entered(area: Area2D) -> void:
 # complex stats resolving takes place here
 func take_damage(amount: float):
 	health.changed(amount)
-	animated_sprite.play("hit")
+	if health.value == 0: # taking a hit can be the last one
+		animated_sprite.play("die")
+	else:
+		animated_sprite.play("hit")
 	
-# death animation and queue_free() from scene tree
 func _on_health_zero():
-	print('slime dead!!')
-	queue_free()
-	# queue free messing up other animations
+	print('at zeor????')
+	
+func _on_animation_finished():
+	match animated_sprite.animation:
+		"hit":
+			animated_sprite.play("idle1")
+		"die":
+			queue_free()
 	

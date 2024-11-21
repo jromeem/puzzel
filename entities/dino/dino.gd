@@ -49,7 +49,6 @@ func _ready() -> void:
 		position.y,
 		level.player_tiles.global_position)
 	conjuring_fx.visible = false
-	local_signals.append(health.signals)
 	
 func take_damage(amount: float):
 	health.changed(amount)
