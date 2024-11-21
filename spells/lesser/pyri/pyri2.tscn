@@ -229,7 +229,7 @@ shape = SubResource("CircleShape2D_p8lkf")
 position = Vector2(0, -8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tq4p2")
-animation = &"loop"
+animation = &"shot"
 autoplay = "loop"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

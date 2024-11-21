@@ -346,8 +346,10 @@ script = ExtResource("1_5t5w8")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hlvc5")
-animation = &"hit"
+animation = &"die"
 autoplay = "idle1"
+frame = 12
+frame_progress = 1.0
 offset = Vector2(-6, -5)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]

@@ -22,7 +22,10 @@ func _on_area_entered(area: Area2D) -> void:
 	
 # complex stats resolving takes place here
 func take_damage(amount: float):
+	print("amount ", amount)
 	health.changed(amount)
+	print("health now ", health.value)
+	
 	if health.value == 0: # taking a hit can be the last one
 		animated_sprite.play("die")
 	else:
