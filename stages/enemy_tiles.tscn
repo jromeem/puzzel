@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dssqqd0e7bfx0"]
+[gd_scene load_steps=4 format=3 uid="uid://dssqqd0e7bfx0"]
 
 [ext_resource type="PackedScene" uid="uid://bmrhg2o8ugco" path="res://stages/tile.tscn" id="1_3g5qe"]
+[ext_resource type="Script" path="res://stages/enemy_tiles.gd" id="1_khloh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdyy"]
 size = Vector2(216, 31.8258)
 
 [node name="Enemy Tiles" type="Area2D"]
 scale = Vector2(5, 5)
+script = ExtResource("1_khloh")
 
 [node name="Tile0" parent="." instance=ExtResource("1_3g5qe")]
 position = Vector2(-108, 17)

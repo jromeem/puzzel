@@ -1,6 +1,6 @@
 class_name Level extends Node2D
 
-@onready var enemy_tiles: Area2D = $"Enemy Tiles"
+@onready var enemy_tiles: EnemyTiles = $"Enemy Tiles"
 @onready var player_tiles: Area2D = $"Player Tiles"
 
 func _ready() -> void:

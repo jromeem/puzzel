@@ -11,6 +11,7 @@ var health = Health.new()
 func _ready() -> void:
 	health.set_health(41)
 	health_bar.set_health(health)
+	
 	health.connect("health_zero", _on_health_zero)
 	animated_sprite.connect("animation_finished", _on_animation_finished)
 	
